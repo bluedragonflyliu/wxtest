@@ -1,0 +1,926 @@
+/*.....................banner部分开始................................*/
+.hide{
+	display: none;
+}
+
+#bannerFrame{
+	width: 100%;
+	position: relative;
+}
+
+@media screen and (max-width: 414px){
+	#bannerFrame{
+		display: none;
+	}
+
+	#phone_pageOne{
+		display: block;
+		position: relative;
+		background: white;
+		/*border:1px solid rgba(0,0,0,0);*/
+	}
+
+	#phone_pageOne .bg1 img{
+		width: 100%;
+		background-position: center center;
+	}
+
+	#phone_pageOne .bg1{
+		width: 100%;
+		overflow: hidden;
+	}
+
+	#phone_pageOne .logo{
+		width: 50%;
+		background: url(../images/logo.png) no-repeat;
+		background-size: 100%;
+		position: absolute;
+		top: 16%;
+		left: 10%;
+	}
+
+	#phone_pageOne a.download,#phone_footer a.download{
+		display: block;
+		width:72.45%;
+		background: url(../images/phone_download.png) no-repeat;
+		background-size: 100%;
+		margin: 5% auto;
+	}
+
+	#phone_footer{
+		display: block;
+	}
+
+	#phone_footer a.download{
+		margin: 5% auto 0; 
+	}
+
+	#textPage_one{
+		display: none;
+	}
+
+	.download_fixed{
+		display: block;
+		width: 45px;
+		height: 45px;
+		position: fixed;
+		right: 5%;
+		bottom: 8%;
+		z-index: 200;
+		opacity: 0;
+	}
+
+	.download_fixed img{
+		width: 100%;
+	}
+}
+
+#bannerFrame ul.banner{
+	width: 100%;
+	height: 100%;
+}
+
+#bannerFrame ul.banner li{
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	position: absolute;
+	-webkit-transition: .8s;
+	-moz-transition: .8s;
+	-ms-transition: .8s;
+	-o-transition: .8s;
+	transition: .8s;
+	opacity: 0;
+}
+
+
+#bannerFrame .banner_content{
+	height: 100%;
+	margin: 0 auto;
+	position: relative;
+	margin-top: 15%;
+}
+
+.logo{
+	width: 383px;
+	height: 171px;
+	position: relative;
+}
+
+a.download{
+	display: block;
+	width: 383px;
+	height: 90px;
+	margin-top: 15px;
+	position: relative;
+	z-index: 10;
+	background: url(../images/download.png) no-repeat;
+	background-size: 100%;
+}
+
+@media screen and (max-width: 1366px){
+	#bannerFrame .banner_content{
+		width: 980px;
+		margin-top:10%;
+	}
+
+	.logo{
+		width: 300px;
+		height: 145px;
+	}
+
+	a.download{
+		width:300px;
+		height: 70px;
+		background-size: 100%;
+		margin-top: 0px;
+	}
+}
+
+@media screen and (min-width: 1367px){
+	#bannerFrame .banner_content{
+		width: 1100px;
+	}
+}
+
+.logo img{
+	display: block;
+	width: 90%;
+	margin: 0 auto;
+}
+
+.banner_Img{
+	width: 100%;
+	position: absolute;
+}
+
+ul.btn{
+	width: 80px;
+	position: absolute;
+	left: 50%;
+	bottom: 0;
+	z-index: 10;
+	margin-left: -40px;
+}
+
+ul.btn li{
+	float: left;
+	width: 20px;
+	height: 20px;
+	background: #b3b3b3;
+	border-radius: 50%;	
+	margin:10px;	
+	opacity: .8;
+}
+
+ul.btn li.active{
+	background: white;	
+	opacity: .8;
+}
+
+div.erweima{
+	width: 240px;
+	height: 400px;
+	position: absolute;
+	right: 0;
+	top: 0
+}
+
+@media screen and (min-width: 600px) and (max-width: 1366px){
+	div.erweima{
+		width: 210px;
+	}
+}
+
+div.erweima img{
+	display: block;
+	width: 100%;
+}
+
+div.erweima img.download{
+	margin-top: 10px;
+}
+
+@media screen and (min-width: 415px){
+	#bannerFrame{
+		height: 150px;
+	}
+
+	#bannerFrame .logo{
+		width: 110px;
+		height: 61px;
+	}
+
+	#bannerFrame a.download{
+		width:110px;
+		height: 70px;
+	}
+}
+
+@media screen and (min-width: 447px){
+	#bannerFrame{
+		height: 200px;
+	}
+
+	#bannerFrame .logo{
+		width: 150px;
+		height: 71px;
+	}
+
+	#bannerFrame a.download{
+		width:150px;
+		height: 70px;
+	}
+}
+
+@media screen and (min-width: 664px){
+	#bannerFrame{
+		height: 300px;
+	}
+
+	#bannerFrame .logo{
+		width: 250px;
+		height: 131px;
+	}
+
+	#bannerFrame a.download{
+		width:250px;
+		height: 70px;
+	}
+}
+
+@media screen and (min-width: 960px){
+	#bannerFrame{
+		height: 400px;
+	}	
+
+	#bannerFrame .logo{
+		width: 250px;
+		height: 131px;
+	}
+
+	#bannerFrame a.download{
+		width:250px;
+		height: 70px;
+	}
+}
+
+@media screen and (min-width:1335px){
+	#bannerFrame{
+		height: 600px;
+	}	
+
+	#bannerFrame .logo{
+		width: 300px;
+		height: 171px;
+	}
+	
+	#bannerFrame a.download{
+		width:300px;
+		height: 70px;
+	}
+}
+
+@media screen and (min-width: 1670px){
+	#bannerFrame{
+		height: 777px;
+	}
+	#bannerFrame .banner_content{
+		width: 1100px;
+	}
+
+	#bannerFrame .logo{
+		width: 383px;
+		height: 171px;
+	}
+
+	#bannerFrame a.download{
+		width: 383px;
+		height: 90px;
+	}
+}
+
+/*.....................banner部分结束................................*/
+
+h1{
+	width: 1100px;
+	height: 100%;
+	margin: 0 auto;
+	position: relative;
+}
+
+#textPage_one{
+	width: 100%;
+	height: 200px;
+	background: white;
+}
+
+#textPage_one h1 img{
+	display: block;
+	/*margin: 0 auto;*/
+	position:absolute;
+	left: 50%;
+	top: 50%; 
+	margin-top: -30px;
+}
+
+@media screen and (min-width: 600px) and (max-width: 1366px){
+	#textPage_one{
+		height: 180px;
+	}
+}
+
+@media screen and (max-width : 767px){
+	#textPage_one{
+		height: 100px;
+	}
+
+	h1{
+		width: 100%;
+		margin: 0 auto;
+	}
+
+	#textPage_one h1 img{
+		width: 60%;
+		margin-top: -16px;
+	}
+
+	#bannerFrame .banner_content{
+		width: 90%;
+	}
+
+	#bannerFrame .banner_content .erweima{
+		width: 100px;
+	}
+}
+
+@media screen and (min-width : 768px) and (max-width : 1024px){
+	h1{
+		width: 100%;
+		margin: 0 auto;
+	}
+
+	#bannerFrame .banner_content{
+		width: 90%;
+	}
+
+	#bannerFrame .banner_content .erweima{
+		width: 150px;
+	}
+}
+
+/*手机滚动页面开始*/
+.img_phone{
+	position: absolute;
+	width: 268px;
+	height: 478px;
+	background:url(../images/phone.png) no-repeat;
+	top: -40%;
+	overflow: hidden;
+	padding: 48px 70px 84px 60px;
+}
+
+.flex-direction-nav{
+	display: none;
+}
+
+.flex-control-nav{
+	display: none
+}
+/*手机滚动页面结束*/
+
+.img_phone ul{
+	width: 268px;
+	height: 476px;
+	overflow: hidden;
+}
+
+.img_phone ul li{
+	float: left;
+}
+
+.img_phone ul li img{
+	width: 100%;
+}
+
+#textPage_two{
+	width: 100%;
+	height: 450px;
+	background: white;
+	position: relative;
+	/*top: 500px;*/
+}
+
+#textPage_two img.txt{
+	position: absolute;
+	right: 5%;
+	top: 50%;
+	margin-top: -78px;
+}
+
+#textPage_three{
+	width: 100%;
+	height: 450px;
+	background: white;
+	position: relative;
+}
+
+#textPage_three img.img{
+	position: absolute;
+	right: 0;
+	bottom:0;
+}
+
+#textPage_three img.txt{
+	position: absolute;
+	left: 5%;
+	top: 50%;
+	margin-top: -114px;
+}
+
+#textPage_four{
+	width: 100%;
+	height: 450px;
+	background: white;
+	position: relative;
+}
+
+#textPage_four img.txt{
+	position: absolute;
+	right: 5%;
+	top: 50%;
+	margin-top: -101px;
+}
+
+@media screen and (min-width : 768px) and (max-width : 1024px){
+	#textPage_two img.txt,#textPage_three img.txt,#textPage_four img.txt{
+		width: 50%;
+	}
+}
+
+#imgPage_one{
+	background-image: url(../images/imgP1.jpg);
+}
+
+#imgPage_two{
+	background-image: url(../images/imgP2.jpg);
+}
+
+#imgPage_three{
+	background-image: url(../images/imgP3.jpg);
+}
+
+.fixed_bgd{
+	width: 100%;
+	height: 600px;	
+	min-height: 100%;
+	-webkit-background-size: cover;	
+	-moz-background-size: cover;	
+	-o-background-size: cover;	
+	-ms-background-size: cover;	
+	background-size: cover;	
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+@media screen and (max-width : 767px){
+	.fixed_bgd{
+		height: 350px;
+	}
+
+	#textPage_two,#textPage_three,#textPage_four{
+		height: 300px;
+	}
+
+	.img_phone{
+		width: 150px;
+		height: 268px;
+		background-size:100%;
+		top: -30%;
+		padding: 29px 40px 110px 35px;
+	}
+
+	#textPage_two img.txt{
+		width:50%;
+		right: 3%;
+		margin-top: -50px;
+	}
+
+	#textPage_three img.img{
+		width:225px;
+		top: -30%;
+	}
+
+	#textPage_three img.txt{
+		width: 50%;
+		left: 3%;
+		margin-top: -71px;
+	}
+
+	#textPage_four img.txt{
+		width: 50%;
+		right: 3%;
+		margin-top: -71px;
+	}
+}
+
+@media screen and (min-width : 768px) and (max-width : 1024px){
+	.fixed_bgd{
+		height: 460px;
+	}
+}
+
+@media screen and (max-width: 414px){
+	#imgPage_one{
+		display: none;
+	}
+	#imgPage_two{
+		display: none;
+	}
+	#imgPage_three{
+		display: none;
+	}
+	#textPage_two{
+		display: none;
+	}
+	#textPage_three{
+		display: none;
+	}
+	#textPage_four{
+		display: none;
+	}
+	#phone_imgPage_one{
+		display: block;
+		background: url(../images/phone_imgP1.jpg) no-repeat fixed center center;
+	}
+	#phone_imgPage_two{
+		display: block;
+		background: url(../images/phone_imgP2.jpg) no-repeat fixed center center;
+	}
+
+	#phone_imgPage_three{
+		display: block;
+		background: url(../images/phone_imgP3.jpg) no-repeat fixed center center;
+		/*background-size: 100%;*/
+	}
+
+	#phone_imgPage_one img,#phone_imgPage_two img,#phone_imgPage_three img{
+		position: relative;
+		width: 60%;
+		top: 30%;
+		left: 50%;
+	}
+
+	#phone_imgPage_two img{
+		top: 85%;
+	}
+
+	#phone_imgPage_three img{
+		top: 85%;
+	}
+
+	#phone_textPage_two .txt{
+		position: absolute;
+		width: 85%;
+		top: 8%;
+		left: 50%;
+	}
+
+	#phone_textPage_two,#phone_textPage_three,#phone_textPage_four{
+		display: block;
+		width: 100%;
+		height: 650px;
+		background: white;
+		position: relative;
+	}
+
+	#phone_textPage_three .txt,#phone_textPage_four .txt{
+		position: absolute;
+		width: 80%;
+		top:74%;
+		left: 50%;
+	}	
+
+	#phone_textPage_two .show,#phone_textPage_three .show,#phone_textPage_four .show{
+		position: absolute;
+		width: 60%;
+		height: 600px;
+		background-size: 100%;
+		top: 30%;
+		left: 50%;
+	}
+	#phone_textPage_two .show{
+		position: absolute;
+		background: url(../images/show.gif) no-repeat;
+		width: 60%;
+		height: 600px;
+		background-size: 100%;
+		top: 30%;
+		left: 50%;
+	}
+
+	#phone_textPage_three .show{
+		position: absolute;
+		background: url(../images/phone2.png) no-repeat;
+		background-size: 100%;
+		width: 58%;
+		height: 600px;
+		top: 8%;
+		left: 50%;
+	}
+	#phone_textPage_four .show{
+		position: absolute;
+		background: url(../images/show2.gif) no-repeat;
+		background-size: 100%;
+		width: 60%;
+		height: 600px;
+		top: 6%;
+		left: 50%;
+	}
+}
+
+a#goBack{
+	display: block;
+	background-color: #373b42;
+	width: 50px;
+	height: 50px;
+	text-align: center;
+	line-height: 50px;
+	position: fixed;
+	bottom: 10%;
+	right: 6%;
+	z-index: 100;
+	opacity: 0;
+	-webkit-transition: 0.5s;
+	-moz-transition: 0.5s;
+	-ms-transition: 0.5s;
+	-o-transition: 0.5s;
+	transition: 0.5s;
+}
+
+a#goBack:hover{
+	background-color: #1f1f1f;
+}
+
+/*........................底部内容开始..............................*/
+#bottom{
+	width: 100%;
+	height: 320px;
+	background: #2a2a2a;
+	position: relative;
+}
+
+#bottom footer{
+	width: 1100px;
+	margin: 0 auto;
+	position: relative;
+	padding-top: 10px;
+}
+
+ul.footer{
+	float: left;
+	width: 17%;
+	height: 200px;
+}
+
+footer div.footer-frame{
+	width: 100%;
+	height: 210px;
+}
+
+ul.footer:nth-child(1){
+	margin-right: 14%;
+}
+
+ul.footer:nth-child(4){
+	margin-left: 14%;
+}
+
+ul.footer:nth-child(2),ul.footer:nth-child(3){
+	width: 160px;
+	margin: 0 2%;
+}
+
+ul.footer:nth-child(2) li,ul.footer:nth-child(3) li{
+	text-align: center;
+}
+
+ul.footer li{
+	width: 100%;
+	margin: 10px 0;
+	text-align: left;
+	font-size: 12px;
+	color: #b7b7b7;
+	line-height: 16px;
+	font-family: "微软雅黑"; 
+	list-style-position:outside;
+}
+
+ul.footer li a{
+	color: #b7b7b7;
+	text-decoration: underline;
+}
+
+ul.footer li.big{
+	font-size: 16px;
+	font-weight: bold;
+	margin:25px 0; 
+}
+
+p.bootom_copy{
+	display: block;
+	width: 80%;
+	margin: 0px auto;
+	border-top: 1px solid #b7b7b7;
+	text-align: center;
+	font-size: 12px;
+	color: #b7b7b7;
+	line-height: 40px;
+	margin-top: 40px;
+}
+
+p.bootom_copy a{
+	color: #b7b7b7;
+	font-size: 12px;
+}
+
+p.bootom_copy a:hover{
+	color: #5a5757;
+}
+
+@media screen and (max-width: 414px){
+	#bottom footer{
+		display: relative;
+		display: none;
+	}
+
+	#bottom{
+		/*display: none;*/
+		bottom: 0;
+		height:11em; 
+	}
+
+	p.bootom_copy{
+		border-top:0px  solid rgba(0,0,0,0);
+		width: 65%;
+		font-size: 0.7em;
+		line-height: 2em;
+		margin-top: 0em;
+		font-family: "微软雅黑";
+	}
+}
+
+.sdk_text{
+	display: none;
+	width: 100%;
+	height: 198px;
+	background-color: rgba(0,0,0,0.5);
+	position: absolute;
+	bottom: -100%;
+	padding: 12px 0;
+	z-index: 101;
+	opacity: 0;
+}
+
+.sdk_text p{	
+	color: white;
+	text-align: left;
+	width: 1100px;
+	margin: 0 auto;
+	font-size: 14px;
+	line-height: 22px;
+	font-family: "微软雅黑"；
+}
+
+.sdk_text p a{
+	font-size: 16px;
+	font-weight: bold;
+	color: white;
+	text-decoration: underline;
+}
+
+.close{
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	position: absolute;
+	right: 2%;
+	cursor: pointer;
+	background:url(../images/close.png) no-repeat; 
+}
+
+@media screen and (max-width : 767px){
+	#bottom footer{
+		width: 80%;
+		margin: 0 auto;
+	}
+
+	ul.footer{
+		width: 40%;
+	}
+
+	footer div.footer-frame{
+		width: 100%;
+		height: 386px;
+	}
+
+	ul.footer:nth-child(1){
+		margin-right: 0%;
+	}
+
+	ul.footer:nth-child(4){
+		margin-left: 0%;
+	}
+
+	ul.footer:nth-child(2){
+		width: 40%;
+		margin: 0 0%;
+		margin-left: 20%;
+	}
+
+	ul.footer:nth-child(3){
+		width: 40%;
+		margin: 0 0%;
+		margin-right: 20%;
+	}
+
+	ul.footer:nth-child(4){
+		width: 40%;
+	}
+
+	ul.footer:nth-child(2) li,ul.footer:nth-child(3) li{
+		text-align: left;
+	}
+
+	p.bootom_copy{
+		width: 100%;
+	}
+
+	.sdk_text p{
+		width: 100%;
+		background-color:#fff;
+		color: #333; 
+	}
+
+	.close{
+		background: url(../images/close2.png);
+		top: 8%;
+	}
+}
+
+@media screen and (min-width:415px) and (max-width : 767px){
+	#bottom{
+		height: 480px;
+	}
+}
+
+@media screen and (min-width : 768px) and (max-width : 1024px){
+	#bottom footer{
+		width: 95%;
+		margin: 0 auto;
+	}
+
+	ul.footer{
+		width: 22%;
+	}
+
+	ul.footer:nth-child(1){
+		margin-right: 2%;
+	}
+
+	ul.footer:nth-child(4){
+		margin-left: 2%;
+	}
+
+	ul.footer:nth-child(2),ul.footer:nth-child(3){
+		width: 24%;
+		margin: 0 1%;
+	}
+
+	.sdk_text p{
+		width: 95%;
+	}
+}
+
+@media screen and (min-width: 600px) and (max-width: 1366px){
+	.sdk_text p{
+		/*width: 980px;		*/
+		line-height: 20px;
+	}
+
+	.sdk_text{
+		height: 196px;
+		padding: 10px 0;
+	}
+}
+
+/*........................底部内容结束..............................*/
+/*@-webkit-keyframes move{
+	0%{
+		-webkit-transform:rotate(0deg);
+	}
+	100%{
+		-webkit-transform:rotate(-360deg);
+	}
+}*/

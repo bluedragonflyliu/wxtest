@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>sparkline</title>
+</head>
+<body>
+  
+</body>
+
+</html>
+/**
+  * 画一个柱状图
+  * @param valueList 图表的值 (数组)
+  * @param dateList	日期值	(数组)
+  * @param renderTo	要显示位置的id
+  * @param controlValue 管控值 (数组)
+  * @colorA 最后一条数据显示的颜色
+  */
+ function newChartColumn(valueList,dateList,renderTo,controlValue,colorA){
+ 	var  chartOption ={
+ 		chart: {
+ 		    renderTo: renderTo,
+ 		    type: 'column',
+ 		    height: h,
+ 		    borderWidth:0,
+ 		    width:w
+ 		},
+ 		credits:{					
+ 			enabled:false
+ 		},
+ 		legend: {					
+ 					enabled: false
+ 				},
+ 		title: {
+ 			text:null
+ 		},
+ 		tooltip: {
+              formatter: function() {
+                 return this.x + '<br>值:'+ this.y +'';
+             },
+             style: {
+                 padding: '10px',
+                 fontWeight: 'bold',
+                 fontSize:'12px'
+             }
+         },
+ 		xAxis: {
+ 			categories:dateList,
+ 			minPadding: 0.05,
+ 			maxPadding: 0.05,
+ 			labels: {
+                 style: {
+                     fontSize:'9px'
+                 }
+             }
+ 		},
+ 		yAxis:{
+ 			title: {
+ 		    	text: null
+ 			}, 
+ 			labels: {
+ 				align: 'left',
+                 style: {
+                     fontSize:'9px'
+                 }
+             }
+ 		}
+ 	};
+ 	
+ 	var controlList = new Array();
+ 	if(controlValue!=null && controlValue.length>0){
+ 		
+ 		for(var i=0; i<controlValue.length; i++){
+ 			if(controlValue[i]!=null && !isNaN(controlValue[i]) && controlValue[i]!=""){
+ 				controlList.push(parseInt(controlValue[i]));
+ 			}else{
+ 				//controlList.push(0);	//0能成功成功
+ 				controlList.push(null);
+ 			}
+ 		}
+ 		
+ 		
+ 		var realData = new Array();
+ 		var innerData;
+ 		for(var i=0; i<valueList.length; i++){
+ 			if(i!=valueList.length-1){
+ 				innerData = {y:valueList[i],color:'#4572A7'};
+ 			}else{
+ 				innerData = {y:valueList[i],color:colorA=='' ? '#4572A7' : colorA};
+ 			}
+ 			realData.push(innerData);
+ 		}
+ 		chartOption.series = [{
+ 			data:realData},
+ 	  		{name:	"管控线",
+	 			data:controlList,
+	 			type:'line',
+	 			color:'#80699B'}
+ 		];
+ 	}else{
+ 		chartOption.series = [{
+ 			name:'值',
+ 			data:valueList
+ 		}]
+ 	  		
+ 	}
+ 	new Highcharts.Chart(chartOption); 
+ }

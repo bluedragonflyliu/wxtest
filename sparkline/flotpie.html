@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>饼状图</title>
+</head>
+<body>
+<script type="text/javascript" src="./js/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="./js/flot/jquery.flot.min.js"></script>
+<script type="text/javascript" src="./js/flot/jquery.flot.pie.min.js"></script>
+<script type="text/javascript">
+var optionPie = {
+﻿ ﻿ series: {
+﻿ ﻿ ﻿ pie: {
+﻿ ﻿ ﻿ ﻿ show: true,
+﻿ ﻿ ﻿ ﻿ radius: 'auto',﻿ // actual radius of the visible pie (based on full calculated radius if <=1, or hard pixel value)
+﻿ ﻿ ﻿ ﻿ innerRadius:40,//圆中心的大小 等于0是变成环形
+﻿ ﻿ ﻿ ﻿ startAngle: 3/2,
+﻿ ﻿ ﻿ ﻿ tilt: .5,//0-1控制是否是圆等于1时为圆
+﻿ ﻿ ﻿ ﻿ offset: {
+﻿ ﻿ ﻿ ﻿ ﻿ top: 0,
+﻿ ﻿ ﻿ ﻿ ﻿ left: 'auto'
+﻿ ﻿ ﻿ ﻿ },
+﻿ ﻿ ﻿ ﻿ stroke: {
+﻿ ﻿ ﻿ ﻿ ﻿ color: '#fff',
+﻿ ﻿ ﻿ ﻿ ﻿ width: 2
+﻿ ﻿ ﻿ ﻿ },
+	//大圆上的label
+﻿ ﻿ ﻿ ﻿ label: {
+﻿ ﻿ ﻿ ﻿ ﻿ show: true,
+﻿ ﻿ ﻿ ﻿ ﻿ formatter: function(label, slice){
+﻿ ﻿ ﻿ ﻿ ﻿ ﻿ return '<div style="font-size:x-small;text-align:center;padding:2px;color:'+slice.color+';">'+label+'<br/>'+Math.round(slice.percent)+'%</div>';
+﻿ ﻿ ﻿ ﻿ ﻿ },﻿ // formatter function
+﻿ ﻿ ﻿ ﻿ ﻿ radius: 1,﻿ // radius at which to place the labels (based on full calculated radius if <=1, or hard pixel value)
+﻿ ﻿ ﻿ ﻿ ﻿ background: {
+﻿ ﻿ ﻿ ﻿ ﻿ ﻿ color: 'black',
+﻿ ﻿ ﻿ ﻿ ﻿ ﻿ opacity: 0
+﻿ ﻿ ﻿ ﻿ ﻿ },
+﻿ ﻿ ﻿ ﻿ ﻿ threshold: 0﻿ // percentage at which to hide the label (i.e. the slice is too narrow)
+﻿ ﻿ ﻿ ﻿ },
+﻿ ﻿ ﻿ ﻿ combine: {
+﻿ ﻿ ﻿ ﻿ ﻿ threshold: -1,﻿ // percentage at which to combine little slices into one larger slice
+﻿ ﻿ ﻿ ﻿ ﻿ color: null,﻿ // color to give the new slice (auto-generated if null)
+﻿ ﻿ ﻿ ﻿ ﻿ label: 'Other'﻿ // label to give the new slice
+﻿ ﻿ ﻿ ﻿ },
+﻿ ﻿ ﻿ ﻿ highlight: {
+﻿ ﻿ ﻿ ﻿ ﻿ //color: '#FFF',﻿ ﻿ // will add this functionality once parseColor is available
+﻿ ﻿ ﻿ ﻿ ﻿ opacity: 0.5
+﻿ ﻿ ﻿ ﻿ }
+﻿ ﻿ ﻿ }
+﻿ ﻿ }
+﻿ };
+var pieData = [
+{ label: "Jan", data: [ [1, 20]] },
+{ label: "Feb", data: [ [1, 20]] },
+{ label: "March", data: [ [1, 30]] }
+];
+</script>
+3. 就像其他flot chart一样，定义placeholder的div，最后就是显示了。很简单：
+<div id="pieChart" style="width:400px;height:300px">
+
+</div>
+<script type="text/javascript">
+$(function () {
+$.plot($("#pieChart"), pieData, optionPie);
+});
+</script>
+</body>
+</html>

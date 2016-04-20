@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name = "viewport" content = "width = device-width,initial-scale = 1"/>
+<!-- 禁止屏幕缩放 -->
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>掌薪</title>
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<script src="js/jquery-2.0.3.min.js"></script>	
+<script src="js/slider.js"></script> 
+<script>
+var scroll;
+var  Height;//获取屏幕高度
+var Width;
+
+//鼠标滚动滑轮 视差效果
+$(window).scroll(function(){
+	scroll = $(this).scrollTop();
+
+
+	//判断滚动高度 显示/隐藏下载按钮
+	if(scroll>Height &scroll<Height*6)
+	{
+		$("a.download_fixed").stop().animate({"opacity":1},100/3);
+	}
+
+	if(scroll<Height||scroll>Height*6)
+	{
+		$("a.download_fixed").stop().animate({"opacity":0},100/3);
+	}
+
+
+
+	var system = { win: false, mac: false, xll: false };
+    //检测平台      
+    var p = navigator.platform;
+    system.win = p.indexOf("Win") == 0;
+    system.mac = p.indexOf("Mac") == 0;
+    system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+    //跳转语句      
+    if (system.win || system.mac || system.xll) {
+        console.log(system.win,system.mac,system.xll)
+        //返回顶部按钮
+		if(Width<380){
+			$("#goBack").addClass('hide');
+		}else{
+			if(scroll>850){
+				$("#goBack").css({"opacity":1});
+			}
+			if(scroll<850){
+				$("#goBack").css({"opacity":0});
+			}
+		}
+    }	
+})
+
+
+window.onload = function  () {
+	var ua = navigator.userAgent;
+	var ipad = ua.match(/(iPad).*OS\s([\d_]+)/);
+    isIphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/);
+    isAndroid = ua.match(/(Android)\s+([\d.]+)/);
+    isMobile = isIphone || isAndroid;
+    // if(isMobile) {
+    //     location.href = 'http://www.baidu.com';
+    // }else{
+    //     location.href = 'http://www.qq.com';
+    // }
+    // 或者单独判断iphone或android 
+    if(isIphone){
+        $('#phone_imgPage_one,#phone_imgPage_two,#phone_imgPage_three').css({"background-attachment": "scroll"});
+        
+    }
+    if(ipad)
+    {
+    	$('#imgPage_one,#imgPage_two,#imgPage_three').css({"background-attachment": "scroll"});
+    }
+
+	Height = document.documentElement.clientHeight|| document.body.clientHeight;
+
+	Width = document.documentElement.clientWidth|| document.body.clientWidth;
+
+	$('#phone_pageOne').css({"height":Height+"px"});
+	$('#phone_imgPage_one').css({"height":Height+"px"});
+	$('#phone_imgPage_two').css({"height":Height+"px"});
+	$('#phone_imgPage_three').css({"height":Height+"px"});
+	$('#phone_textPage_three').css({"height":Height+"px"});
+	$('#phone_textPage_two').css({"height":Height+"px"});
+	$('#phone_textPage_four').css({"height":Height+"px"});
+
+	$('#phone_pageOne .bg1').css({"height":Height*0.83});
+
+    // function centerWindow(obj){
+    //     obj.css({  
+    //         "left": ($(window).width() - obj.outerWidth())/2
+    //     });
+    // }
+
+    //图片居中函数
+    function centerWindow(obj){
+        obj.css({  
+            "margin-left":-obj.outerWidth()/2+"px"
+        });
+    }
+    //obj center
+    function centerObj(obj1,obj2){
+        $(obj2).css({ left: (obj1.outerWidth() - obj2.outerWidth())/2});
+    }
+
+    centerWindow($('#phone_textPage_four .txt'));
+    centerWindow($('#phone_textPage_three .txt'));
+    centerWindow($('#phone_textPage_two .txt'));
+    centerWindow($('#phone_imgPage_two img'));
+    centerWindow($('#phone_imgPage_one img'));
+    centerWindow($('#phone_imgPage_three img'));
+    centerWindow($('#phone_textPage_four .show'));
+    centerWindow($('#phone_textPage_three .show'));
+    centerWindow($('#phone_textPage_two .show'));
+    centerObj($('#textPage_one h1'),$('#textPage_one img'));
+
+    $(window).resize(function(){
+  		centerWindow($('#phone_textPage_four .txt'));
+	    centerWindow($('#phone_textPage_three .txt'));
+	    centerWindow($('#phone_textPage_two .txt'));
+	    centerWindow($('#phone_imgPage_two img'));
+	    centerWindow($('#phone_imgPage_one img'));
+	    centerWindow($('#phone_imgPage_three img'));
+	    centerWindow($('#phone_textPage_four .show'));
+	    centerWindow($('#phone_textPage_three .show'));
+	    centerWindow($('#phone_textPage_two .show'));
+	    centerObj($('#textPage_one h1'),$('#textPage_one img'));
+    })
+
+	//banner 点击圆点
+	$('ul.btn li').each(function(index)
+	{
+		$(this).click(function(){
+			var thisIndex = index;
+			$('ul.btn li').removeClass('active');
+			$(this).addClass('active');
+			$('ul.banner li').css({opacity:0});
+			$('ul.banner li').eq(thisIndex).css({opacity:1});
+		})
+	})
+
+	//banner 自动轮播效果
+	var max = $('ul.btn li').length;
+	var index = 0;
+	var banner = function(){
+		$('ul.btn li').removeClass('active');
+		$('ul.btn li').eq(index).addClass('active');
+		$('ul.banner li').css({opacity:0});
+		$('ul.banner li').eq(index).css({opacity:1});
+		index++;
+	
+		if(index>=max){
+			index = 0;
+		}
+	};
+	var timer = setInterval(banner,3000);
+	$('#bannerFrame').mouseover(function(){
+		clearInterval(timer);
+	});
+	$('#bannerFrame').mouseleave(function(){
+		timer = setInterval(banner,3000);
+	});
+
+	//第三个手机屏幕滚动效果
+	$('.img_phone').flexslider({
+		animation: "slide",
+		direction:"vertical",
+		easing:"swing"
+	});
+
+	//sdk点击弹出框效果
+	$('.button_sdk').click(function(){
+		$('.sdk_text').css({"display":"block"}).animate({"bottom":"0","opacity":1},500);
+	})
+	$('.close').click(function(){
+		$('.sdk_text').css({"display":"none"}).animate({"bottom":"-100%","opacity":"0"},500);
+	});
+
+	//缓慢返回顶部锚点
+	$(".scroll").click(function(event){		
+		event.preventDefault();
+		$('html,body').animate({scrollTop:$(this.hash).offset().top},800);
+	});
+	
+	//点击下载最新版掌薪
+	$(document).ready(function(){
+		$(".appDownload").click(function(){
+			$.ajax({
+				
+				url: "http://god.51zhangxin.com/api.php?action=api.common.getapplatestpkg",
+				data: {'pkg_nm':'cn.weidoo.zhangxin','ver_code':'0.1'},
+				dataType: "jsonp",
+				callback: 'callback',
+				success: function(data) {
+					url = data.result.url;
+					window.location.href = url;
+				}
+			});
+		});
+	});
+}
+</script>
+<a href="#top" class="scroll" id="goBack"><img src="images/arrow.png" alt=""></a>
+<a  href="javascript:void(0)" class="hide download_fixed appDownload">
+	<img src="images/button_download.png" alt="">
+</a>
+<!--。。。。。。。。 。。。。。。浮动下载按钮 。。。。。。。。。。。。-->
+
+<a href="" id="top"></a>
+<!-- 顶部锚点 -->
+
+<div class="hide" id="phone_pageOne">
+	<div class="bg1"><img src="images/phone_b1.jpg" alt=""></div>
+	<div class="logo"></div>
+	<a class="download appDownload" href="javescript:void(0)"></a>
+</div>
+<!-- 手机第一页面显示内容 -->
+
+<div id="bannerFrame">
+	<ul class="banner">
+		<li style="opacity:1">
+			<img class="banner_Img" src="images/b1.jpg" alt="">
+			<div class="banner_content">
+				<div class="logo">
+					<img src="images/logo.png" alt="">
+				</div>
+
+				<a href="javascript:void(0)" class="download appDownload" id="zx_download"></a>
+			</div>
+		</li>
+		<li>
+			<img class="banner_Img" src="images/b2.jpg" alt="">
+			<div class="banner_content">
+				<div class="logo">
+					<img src="images/logo2.png" alt="">
+				</div>
+				<!-- <a href="javascript:void(0)" class="download_sdk"></a> -->
+				<div class="erweima">
+					<img src="images/zxlogo.png" alt="" class="erweima">
+					<img src="images/download2.png" alt="" class="download">
+				</div>
+			</div>		
+		</li>
+	</ul>
+
+	<ul class="btn">
+		<li class="active"></li>
+		<li></li>
+	</ul>
+</div>
+<!-- banner -->
+
+<div id="textPage_one">
+	<h1>
+		<img src="images/txtP1.png" alt="">
+	</h1>
+</div>
+<!-- PC页面第一部分文字 -->
+
+<div class="fixed_bgd" id="imgPage_one">
+</div>
+<!-- PC页面第一部分图片 -->
+
+<div class="hide center" id="phone_imgPage_one">
+	<img src="images/phone_txtP1.png" alt="">
+</div>
+<!-- 手机页面第一部分图片 -->
+
+<div id="textPage_two">
+	<h1>		
+		<div class="img_phone">
+			<div class="show" style="width:100%;height:100%;background:url(./images/show1.gif);background-size: 100%"></div>
+		</div>
+		<img class="txt" src="images/txtP2.png" alt="">
+	</h1>
+</div>
+<!-- PC页面第二部分文字 -->
+
+<div class="hide center" id="phone_textPage_two">
+	<div class="show"></div>
+	<img class="txt" src="images/txtP2.png" alt="">
+</div>
+<!-- 手机页面第二部分文字 -->
+
+<div class="fixed_bgd" id="imgPage_two">
+	
+</div>
+<!-- PC页面第二部分图片 -->
+
+<div class="hide center" id="phone_imgPage_two">
+	<img src="images/phone_txtP2.png" alt="">
+</div>
+<!-- 手机页面第二部分图片 -->
+
+<div id="textPage_three">
+	<h1>
+		<img class="img" src="images/phone2.png" alt="">
+		<img class="txt" src="images/txtP3.png" alt="">
+	</h1>
+</div>
+<!-- PC页面第三部分文字 -->
+
+<div class="hide center" id="phone_textPage_three">
+	<div class="show"></div>
+	<img class="txt" src="images/txt_phone_txtP3.png" alt="">
+</div>
+<!-- 手机页面第三部分文字 -->
+
+<div class="fixed_bgd" id="imgPage_three">
+	
+</div>
+<!-- PC页面第三部分图片 -->
+
+<div class="hide center" id="phone_imgPage_three">
+	<img src="images/phone_txtP3.png" alt="">
+</div>
+<!-- 手机页面第三部分图片 -->
+
+<div id="textPage_four">	
+	<h1>
+		<div class="img_phone flexslider">
+			<ul class="slides">
+				<li>
+					<div class="img">
+						<img src="images/last_01.jpg" alt="">
+					</div>
+				</li>
+				<li>
+					<div class="img">
+						<img src="images/last_02.jpg" alt="">
+					</div>
+				</li>
+				<li>
+					<div class="img">
+						<img src="images/last_03.jpg" alt="">
+					</div>
+				</li>
+			</ul>			
+		</div>
+		<img class="txt" src="images/txtP4.png" alt="">
+	</h1>
+</div>
+<!-- PC页面第四部分文字 -->
+
+<div class="hide center" id="phone_textPage_four">
+	<div class="show">
+	</div>
+	<img class="txt" src="images/txt_phone_txtP4.png" alt="">
+</div>
+<!-- 手机页面第四部分文字 -->
+
+<div id="bottom">
+	<div class="hide" id="phone_footer">&nbsp
+		<a href="javascript:void(0)" class="download appDownload"></a>
+		<p class="bootom_copy"> © 2012 - 2015  掌上维度 版权所有 <a href="http://www.miibeian.gov.cn">京ICP备12026739号-4</a></p>
+	</div>
+	<footer>
+		<div class="footer-frame">
+			<ul class="footer">
+				<li class="big">联系我们</li>
+				<li>地址：北京市 朝阳区 阜通东大街 融科望京中心B座2502</li>
+				<li>电话：010-56201566</li>
+				<li>邮箱：business@xiniubox.com</li>
+				<li>QQ:   3260549165</li>
+			</ul>
+
+			<ul class="footer">
+				<li class="big">掌薪二维码（用户版）</li>
+				<li><img src="images/zxlogo.png" width="130" height="130" alt=""></li>
+			</ul>
+
+			<ul class="footer">
+				<li class="big">掌薪二维码（商家版）</li>
+				<li><img src="images/zxshoplogo.png" width="130" height="130" alt=""></li>
+			</ul>
+
+			<ul class="footer">
+				<li class="big">友情链接</li>
+				<li><a class="button_sdk" href="javascript:void(0)">掌薪SDK</a><div class="sanjiao"></div></li>
+				<li>掌上维度：<a href="http://www.weidoo.com.cn">www.weidoo.com.cn</a></li>
+				<li>犀牛盒子：<a href="http://www.xiniubox.com">www.xiniubox.com</a></li>
+			</ul>
+		</div>
+		<p class="bootom_copy">© 2012 - 2015  掌上维度 版权所有 <a href="http://www.miibeian.gov.cn">京ICP备12026739号-4</a></p>
+	</footer>
+	<div class="sdk_text">
+		<div class="close"></div>
+		<p>掌薪SDK 1.0（20151019）版使用说明：<br>
+			1.下载jar文件，添加到项目中去；<a href="http://zhangxin.xiniubox.com/zhangxin/index.php?action=api.common.getapp&fid=563c1887ff9eaa7e408b45b3">下载</a><br>
+			2.在Application的onCreate()方法中中调用new ZXSDK.init()；<br>
+			3.添加权限<br>
+			    &ltuses-permission android:name="android.permission.READ_PHONE_STATE" /&gt<br>
+			    &ltuses-permission android:name="android.permission.INTERNET"/&gt<br>
+			4.在需要的地方调用new TaskImpl().complete(String taskId)；<br>
+			taskId由开发者定义，然后taskId所对应的任务通过文档的形式提交给掌薪的编辑，在开发者的APP上传到我们服务器之后，我们会根据App和提交的文档对App进行审核，由于SDK接口比较简单接口，所以我们将不提供开发者测试SDK的功能，同时也希望开发者仔细阅读文档，有什么问题也可联系我们。QQ:3242864487;3260549165;
+		</p>				
+	</div>	
+</div>
+<!-- 底部信息 -->
+</body>
+</html>

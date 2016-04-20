@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>citytest</title>
+	<link rel="stylesheet" type="text/css" href="./css/main.css" />
+	<style type="text/css">
+		.demo{width:80%; margin:20px auto}
+		.demo h3{height:32px; line-height:32px}
+		.demo p{line-height:24px}
+		pre{margin-top:10px; padding:6px; background:#f7f7f7}
+	</style>
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<script type="text/javascript" src="./js/jquery.cityselect.js"></script>
+	
+</head>
+<body>
+	<script type="text/javascript">
+	$(function(){
+				$("#city_2").citySelect({
+					prov:"北京",
+					nodata:"none"
+				});
+			});
+	$(".prov").change(function(){
+		alert (11);
+		var selectProv = $(".prov").val();
+		alert(selectProv);
+	});
+	</script>
+	<div class="demo">
+		<h3>直接调用</h3>
+		<p>三级联动，默认省份：北京，隐藏无数据的子级select</p>
+		<!-- <form method='post' onsubmit="return sub();"> -->
+		<form method='post' action = './test.php'>
+		<div id="city_2">
+			<select class="prov" name='prov'></select> 
+			<select class="city" name='city' disabled="disabled"></select>
+			<select class="dist" name='dist' disabled="disabled"></select>
+		</div>
+		<input type = 'submit' id='submit' value='提交'/>
+		</form>
+	</div>
+</body>
+<script type="text/javascript">
+	function sub(){
+		//alert('您提交了表单');
+		return false;
+	}
+	$(document).ready(function(){
+		$('#submit').click(function(){
+			var prov = $('.prov').val();
+			var city = $('.city').val();
+			var dist = $('.dist').val();
+			if(prov=='香港' || prov=='澳门'){
+				res = prov+'特别行政区'+city;
+			} else if(prov=='台湾'){
+				res = prov+city;
+			} else if(prov=='国外'){
+				res = prov;
+			}else if(String(dist) == 'null'){
+				res = prov+'市'+city;
+			} else {
+				res = prov+'省'+city+'市'+dist;
+			}
+			
+			console.log(res);
+		});
+	});
+</script>
+</hml>

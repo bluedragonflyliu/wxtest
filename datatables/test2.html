@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
+
+    <title>DataTables example</title>
+    <link rel="stylesheet" type="text/css" href="./css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/buttons.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/editor.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/select.dataTables.min.css">
+    
+</head>
+<body>
+    <table id="example" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>用户名</th>
+                <th>店铺名</th>
+                <th>地址</th>
+                <th>电话</th>
+                <th>邮箱</th>
+                <th>薪币</th>
+            </tr>
+        </thead>
+    </table>
+    <script type="text/javascript" language="javascript" src="./scripts/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" language="javascript" src="./scripts/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="./scripts/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" language="javascript" src="./scripts/dataTables.select.min.js"></script>
+    <script type="text/javascript" language="javascript" src="./scripts/dataTables.editor.min.js"></script>
+    <script>
+    var editor; // use a global for the submit and return data rendering in the examples
+    $(document).ready(function() {
+        editor = new $.fn.dataTable.Editor( {
+        ajax: "./scripts/data.php",
+        table: "#example",
+        fields: [ {
+                label: "用户名:",
+                name: "name"
+            }, {
+                label: "店铺名:",
+                name: "show_name"
+            }, {
+                label: "地址:",
+                name: "addr"
+            }, {
+                label: "电话:",
+                name: "phone"
+            }, {
+                label: "邮箱:",
+                name: "email"
+            }, {
+                label: "薪币:",
+                name: "bonus_points",
+            }
+        ]
+    } );
+ 
+     // Activate an inline edit on click of a table cell
+    $('#example').on( 'click', 'tbody td:not(:first-child)', function (e) {
+        editor.inline( this );
+    } );
+ 
+    $('#example').DataTable( {
+        dom: "Bfrtip",
+        ajax: "./scripts/data.php",
+        columns: [
+            {
+                data: null,
+                defaultContent: '',
+                className: 'select-checkbox',
+                orderable: false
+            },
+            { data: "name" },
+            { data: "show_name" },
+            { data: "addr" },
+            { data: "phone" },
+            { data: "email" },
+            { data: "bonus_points"}
+        ],
+        select: {
+            style:    'os',
+            selector: 'td:first-child'
+        },
+        buttons: [
+            { extend: "create", editor: editor },
+            { extend: "edit",   editor: editor },
+            { extend: "remove", editor: editor }
+        ]
+    } );
+} );
+    </script>
+</body>
+</html>

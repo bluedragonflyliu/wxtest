@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
+
+	<title>DataTables example</title>
+	<link rel="stylesheet" type="text/css" href="./DataTables-1.10.8/media/css/jquery.dataTables.css">
+	<style type="text/css" class="init">
+
+	</style>
+	<script type="text/javascript" language="javascript" src="./DataTables-1.10.8/media/js/jquery-2.0.3.min.js"></script>
+	<script type="text/javascript" language="javascript" src="./DataTables-1.10.8/media/js/jquery.dataTables.js"></script>
+	<script type="text/javascript" language="javascript" src="./DataTables-1.10.8/media/js/jquery.jeditable.js"></script>
+	<script type="text/javascript" language="javascript" class="init">
+
+$(document).ready(function() {
+	var mytable = $('#example').DataTable( {
+			"searching":false,
+	        "processing": true,
+			"serverSide": true,
+			"bDestory": true,
+        	"bRetrieve": true,
+	        "ajax": {
+			url: "./scripts/data.php",
+			dataType: "json",
+			},
+
+	        columnDefs:[{
+	            orderable:false,          //禁用排序
+	            targets:[0,1,2,3]   //指定的列
+	       				}],
+	       	order: [[ '0', "asc"]],
+
+	       	"lengthMenu": [[10, 20, 30, 50], [10, 20, 30, 50]],
+
+	        "language": {
+	            "url": "./scripts/Chinese.json"
+	        },
+	         "aoColumns": [
+            {
+                "mDataProp": 0,
+                "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                    $(nTd).addClass('inputTd').attr('id', 'name|'+oData[6]+'|'+sData);
+                    $(nTd).attr('fields','name');
+                }
+            },
+            {
+                "mDataProp": 1,
+                "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                    $(nTd).addClass('inputTd').attr('id', 'show_name|'+oData[6]+'|'+sData);
+                    $(nTd).attr('fields','name');
+                    //$(nTd).html("<select class='selectTd' id=td_"+sData+"_"+oData.id+"><option value="+sData+" selected>"+sData+"</option></select>");
+                }
+            },
+            {"mDataProp": 2},
+            {"mDataProp": 3},
+            {"mDataProp": 4},
+            {"mDataProp": 5},
+        ],
+
+        "fnDrawCallback": function (data, x) {
+        
+            $('#example tbody td.inputTd').editable('./scripts/change.php',{
+            	callback:function(value,settings) {
+            	var foo = $(this).attr('fields');
+            	value['fields']=foo;
+            	console.log(foo);
+            	return(value);
+            	},
+            	
+       	 		indicator : 'Saving...',
+        		tooltip   : 'Click to edit...',
+        		//submitdata : {foo: foo},
+    		});
+    
+        }
+    });    
+});
+
+	</script>
+</head>
+<body>
+	<table id="example" class="display" cellspacing="0" width="100%">
+		<thead>
+			<tr>
+				<th>用户名</th>
+				<th>店铺名</th>
+				<th>地址</th>
+				<th>电话</th>
+				<th>邮箱</th>
+				<th>薪币</th>
+			</tr>
+		</thead>
+		<tbody>
+			
+		</tbody>
+	</table>
+</body>
+</html>
